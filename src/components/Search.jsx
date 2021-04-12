@@ -15,7 +15,7 @@ const Search = () => {
           type="text"
           className="focus:outline-none w-full text-xs"
         />
-        <button className="text-white font-medium focus:outline-none leading-4 bg-blue-500 rounded-md py-3.5 px-12">
+        <button className="text-white font-medium focus:outline-none leading-4 bg-brand rounded-md py-3.5 px-12">
           Search
         </button>
       </div>
