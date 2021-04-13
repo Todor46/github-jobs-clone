@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Search from "./components/Search";
 import LocationRadioInput from "./components/locationRadioInput/LocationRadioInput";
+import JobCard from "./components/JobCard";
 
 function App() {
   const cities = [
@@ -71,7 +72,9 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="col-span-8">jobs</div>
+        <div className="col-span-8">
+          <JobCard />
+        </div>
       </div>
     </div>
   );
