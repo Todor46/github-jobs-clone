@@ -3,8 +3,19 @@ import Header from "./components/Header";
 import Search from "./components/Search";
 import LocationRadioInput from "./components/locationRadioInput/LocationRadioInput";
 import JobCard from "./components/JobCard";
+import { useEffect, useState } from "react";
+import getJobs from "./services/getJobs";
 
 function App() {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setJobs(getJobs());
+      setLoading(false);
+    }, 0);
+  }, []);
+
   const cities = [
     {
       label: "London",
@@ -51,7 +62,7 @@ function App() {
             Location
           </label>
           <div className="bg-white rounded-4 shadow-sm w-full mt-3.5 flex flex-row items-center">
-            <span class="material-icons text-base text-gray-light ml-3.5">
+            <span className="material-icons text-base text-gray-light ml-3.5">
               public
             </span>
             <input
@@ -65,6 +76,7 @@ function App() {
           <div className="space-y-4 mt-6 pl-3.5 text-poppins text-sm">
             {cities.map((city) => (
               <LocationRadioInput
+                key={city.value}
                 groupName="location"
                 value={city.value}
                 label={city.label}
@@ -72,8 +84,10 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="col-span-8">
-          <JobCard />
+        <div className="col-span-8 space-y-8">
+          {loading
+            ? "loading"
+            : jobs.map((job) => <JobCard key={job.id} job={job} />)}
         </div>
       </div>
     </div>
