@@ -7,7 +7,7 @@ const Search = () => {
       style={{ backgroundImage: 'url("backgroundImg.png")' }}
     >
       <div className="search-bar w-2/3 mx-auto p-1 bg-white rounded-4 flex items-center">
-        <span class="material-icons text-lg text-gray-light ml-4">
+        <span className="material-icons text-lg text-gray-light ml-4">
           work_outline
         </span>
         <input
