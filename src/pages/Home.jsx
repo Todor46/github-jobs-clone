@@ -152,6 +152,8 @@ const Home = () => {
           {loading
             ? "loading"
             : slicedJobs.map((job) => <JobCard key={job.id} job={job} />)}
+
+          <Pagination numOfPages={numOfPages} activePage={page || "0"} />
         </div>
       </div>
     </>
