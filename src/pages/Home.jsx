@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import getJobs from "../services/getJobs";
 import LocationRadioInput from "../components/locationRadioInput/LocationRadioInput";
 import Search from "../components/Search";
@@ -9,9 +9,10 @@ import Pagination from "../components/Pagination";
 const Home = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // const { search } = useLocation();
-  // console.log(search);
+  const [numOfPages, setNumOfPages] = useState(1);
+  const [locationQuery, setLocationQuery] = useState("");
+  const pageSize = 5;
+  const history = useHistory();
 
   useEffect(() => {
     setTimeout(() => {
@@ -20,7 +21,42 @@ const Home = () => {
     }, 0);
   }, []);
 
-  const slicedJobs = jobs.slice(0, 5);
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const keyword = params.get("keyword");
+  const fullTime = params.get("fullTime");
+  const location = params.get("location");
+  const page = params.get("page");
+
+  let filteredJobs = [...jobs];
+
+  if (keyword) {
+    filteredJobs = filteredJobs.filter(
+      (job) =>
+        job.title.toLowerCase().includes(keyword.toLowerCase()) ||
+        job.company.toLowerCase().includes(keyword.toLowerCase()) ||
+        job.description.toLowerCase().includes(keyword.toLowerCase())
+    );
+  }
+
+  if (fullTime === "true") {
+    filteredJobs = filteredJobs.filter((job) => job.type === "Full Time");
+  }
+
+  if (location) {
+    filteredJobs = filteredJobs.filter((job) =>
+      job.location.toLowerCase().includes(location.toLowerCase())
+    );
+  }
+
+  useEffect(() => {
+    setNumOfPages(Math.ceil(filteredJobs.length / pageSize));
+  }, [filteredJobs.length]);
+
+  const slicedJobs = filteredJobs.slice(
+    page * pageSize,
+    page * pageSize + pageSize
+  );
 
   const cities = [
     {
@@ -41,9 +77,20 @@ const Home = () => {
     },
   ];
 
+  const handleFiltering = (e, type) => {
+    console.log(e);
+    if (e) {
+      params.set(type, e);
+    } else {
+      params.delete(type);
+    }
+
+    history.push({ search: params.toString() });
+  };
+
   return (
     <>
-      <Search />
+      <Search handleFiltering={handleFiltering} keyword={keyword} />
       <div className="grid grid-cols-12 gap-8 mt-10.5 text-gray-dark">
         <div className="col-span-4">
           <div className="flex space-x-3 font-medium">
@@ -52,6 +99,8 @@ const Home = () => {
               name="fullTime"
               id="fullTime"
               className="w-4.5 h-4.5 rounded-sm text-brand bg-transparent border-gray-light"
+              onChange={(e) => handleFiltering(e.target.checked, "fullTime")}
+              defaultChecked={fullTime}
             />
             <label
               htmlFor="fullTime"
@@ -76,6 +125,11 @@ const Home = () => {
               id="location"
               placeholder="City, state, zip code or country"
               className="border-none w-full text-sm text-gray-dark placeholder-gray-light py-4 focus:ring-0"
+              onChange={(e) => {
+                handleFiltering(e.target.value, "location");
+                setLocationQuery(e.target.value);
+              }}
+              value={locationQuery}
             />
           </div>
           <div className="space-y-4 mt-6 pl-3.5 text-poppins text-sm">
@@ -85,6 +139,11 @@ const Home = () => {
                 groupName="location"
                 value={city.value}
                 label={city.label}
+                onChange={(e) => {
+                  handleFiltering(e.target.value, "location");
+                  setLocationQuery("");
+                }}
+                checked={city.value === location}
               />
             ))}
           </div>
@@ -93,8 +152,6 @@ const Home = () => {
           {loading
             ? "loading"
             : slicedJobs.map((job) => <JobCard key={job.id} job={job} />)}
-
-          <Pagination numOfPages={5} activePage={2} />
         </div>
       </div>
     </>
