@@ -1,6 +1,6 @@
 import React from "react";
 
-const LocationRadioInput = ({ groupName, value, label, onChange }) => {
+const LocationRadioInput = ({ groupName, value, label, onChange, checked }) => {
   return (
     <div className="flex items-center">
       <label
@@ -14,6 +14,7 @@ const LocationRadioInput = ({ groupName, value, label, onChange }) => {
           id={value}
           className="hidden"
           onChange={onChange}
+          checked={checked}
         />
         <span className="w-4.5 h-4.5 inline-block mr-3 rounded-full border border-gray-light checked-sibling:bg-brand checked-sibling:border-brand ring-2 ring-gray-lighter ring-inset"></span>
         {label}
