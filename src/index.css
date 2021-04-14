@@ -21,7 +21,7 @@ html {
 
 @layer components {
   .pagination-btn {
-    @apply border border-gray-light text-gray-light hover:border-brand hover:text-brand cursor-pointer h-9 w-9 flex items-center justify-center rounded-4 text-sm;
+    @apply border border-gray-light text-gray-light hover:border-brand hover:text-brand cursor-pointer h-9 w-9 flex items-center justify-center rounded-4 text-sm focus:outline-none focus:ring-1 focus:ring-brand;
   }
 
   .pagination-btn.active {

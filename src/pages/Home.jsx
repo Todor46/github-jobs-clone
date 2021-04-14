@@ -75,10 +75,15 @@ const Home = () => {
       label: "Berlin",
       value: "berlin",
     },
+    {
+      label: "None",
+      value: null,
+    },
   ];
 
   const handleFiltering = (e, type) => {
     console.log(e);
+    if (type !== "page") params.delete("page");
     if (e) {
       params.set(type, e);
     } else {
@@ -153,7 +158,11 @@ const Home = () => {
             ? "loading"
             : slicedJobs.map((job) => <JobCard key={job.id} job={job} />)}
 
-          <Pagination numOfPages={numOfPages} activePage={page || "0"} />
+          <Pagination
+            numOfPages={numOfPages}
+            activePage={parseInt(page) || 0}
+            handleFiltering={handleFiltering}
+          />
         </div>
       </div>
     </>
