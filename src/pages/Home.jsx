@@ -27,7 +27,7 @@ const Home = () => {
   const keyword = params.get("keyword");
   const fullTime = params.get("fullTime");
   const location = params.get("location");
-  const page = params.get("page");
+  const page = params.get("page") || 1; // If no page is specified in the URL default to 1
 
   let filteredJobs = [...jobs];
 
@@ -55,8 +55,8 @@ const Home = () => {
   }, [filteredJobs.length]);
 
   const slicedJobs = filteredJobs.slice(
-    page * pageSize,
-    page * pageSize + pageSize
+    (page - 1) * pageSize,
+    (page - 1) * pageSize + pageSize
   );
 
   const cities = [
@@ -83,7 +83,6 @@ const Home = () => {
   ];
 
   const handleFiltering = (e, type) => {
-    console.log(e);
     if (type !== "page") params.delete("page");
     if (e) {
       params.set(type, e);
@@ -166,7 +165,7 @@ const Home = () => {
               ))}
               <Pagination
                 numOfPages={numOfPages}
-                activePage={parseInt(page) || 0}
+                activePage={parseInt(page)}
                 handleFiltering={handleFiltering}
               />
             </>
