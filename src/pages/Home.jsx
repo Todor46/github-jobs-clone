@@ -5,6 +5,7 @@ import LocationRadioInput from "../components/locationRadioInput/LocationRadioIn
 import Search from "../components/Search";
 import JobCard from "../components/JobCard";
 import Pagination from "../components/Pagination";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -18,7 +19,7 @@ const Home = () => {
     setTimeout(() => {
       setJobs(getJobs());
       setLoading(false);
-    }, 0);
+    }, 2000);
   }, []);
 
   const { search } = useLocation();
@@ -154,15 +155,22 @@ const Home = () => {
           </div>
         </div>
         <div className="col-span-8 space-y-8">
-          {loading
-            ? "loading"
-            : slicedJobs.map((job) => <JobCard key={job.id} job={job} />)}
-
-          <Pagination
-            numOfPages={numOfPages}
-            activePage={parseInt(page) || 0}
-            handleFiltering={handleFiltering}
-          />
+          {loading ? (
+            <div className="w-full h-full flex items-center justify-center">
+              <Loader />
+            </div>
+          ) : (
+            <>
+              {slicedJobs.map((job) => (
+                <JobCard key={job.id} job={job} />
+              ))}
+              <Pagination
+                numOfPages={numOfPages}
+                activePage={parseInt(page) || 0}
+                handleFiltering={handleFiltering}
+              />
+            </>
+          )}
         </div>
       </div>
     </>
