@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap&family=Montserrat:wght@500;700&display=swap");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 .text-poppins {
@@ -14,6 +14,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+.text-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
 html {
   font-family: "Roboto", sans-serif;
   background-color: #f6f7fb;
@@ -21,7 +25,7 @@ html {
 
 @layer components {
   .pagination-btn {
-    @apply border border-gray-light text-gray-light hover:border-brand hover:text-brand cursor-pointer h-9 w-9 flex items-center justify-center rounded-4 text-sm focus:outline-none focus:ring-1 focus:ring-brand;
+    @apply border border-gray-light text-gray-light hover:border-brand hover:text-brand h-9 w-9 flex items-center justify-center rounded-4 text-sm focus:outline-none focus:ring-1 focus:ring-brand;
   }
 
   .pagination-btn.active {
