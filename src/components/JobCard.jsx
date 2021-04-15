@@ -15,8 +15,12 @@ const JobCard = ({ job }) => {
 
   return (
     <div className="bg-white w-full rounded-4 p-3 flex space-x-4 shadow-sm">
-      <div className="w-22 h-22 flex items-center">
-        <img src={company_logo} alt={company} className="w-full" />
+      <div className="w-22 h-22 flex items-center justify-center">
+        <img
+          src={company_logo}
+          alt={company}
+          className="max-w-full max-h-full"
+        />
       </div>
       <div className="flex flex-col flex-grow">
         <div className="text-xs font-bold mb-2">
