@@ -1,5 +1,6 @@
 import React from "react";
 import { usePagination } from "@material-ui/lab";
+import Ellipsis from "./Ellipsis";
 
 const Pagination = ({ numOfPages, activePage, handleFiltering }) => {
   const { items } = usePagination({
@@ -9,12 +10,12 @@ const Pagination = ({ numOfPages, activePage, handleFiltering }) => {
   });
 
   return (
-    <ul className="flex justify-end space-x-3">
+    <ul className="flex justify-end space-x-3 items-center">
       {items.map(({ page, type, selected, ...item }, index) => {
         let children = null;
 
         if (type === "start-ellipsis" || type === "end-ellipsis") {
-          children = "…";
+          children = <Ellipsis />;
         } else if (type === "page") {
           children = (
             <button
