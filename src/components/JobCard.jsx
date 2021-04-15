@@ -27,7 +27,7 @@ const JobCard = ({ job }) => {
         <div className="text-lg leading-5 mb-3">
           <a href={`/${id}`}>{title}</a>
         </div>
-        <div className="flex justify-between">
+        <div className="md:flex space-y-6 md:space-y-0 justify-between">
           <div className="border border-gray-dark rounded-4 py-1 px-2 text-xs font-bold w-min whitespace-nowrap flex-none">
             {type}
           </div>

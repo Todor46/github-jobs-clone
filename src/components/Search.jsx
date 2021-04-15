@@ -10,7 +10,7 @@ const Search = ({ handleFiltering, keyword }) => {
     >
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="search-bar w-2/3 mx-auto p-1 bg-white rounded-4 flex items-center"
+        className="search-bar w-11/12 md:w-2/3 mx-auto p-1 bg-white rounded-4 flex items-center "
       >
         <span className="material-icons text-lg text-gray-light ml-4">
           work_outline

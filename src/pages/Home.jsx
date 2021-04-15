@@ -96,8 +96,8 @@ const Home = () => {
   return (
     <>
       <Search handleFiltering={handleFiltering} keyword={keyword} />
-      <div className="grid grid-cols-12 gap-8 mt-10.5 text-gray-dark">
-        <div className="col-span-4">
+      <div className="md:grid md:grid-cols-12 gap-8 mt-10.5 text-gray-dark">
+        <div className="md:col-span-4 mb-8">
           <div className="flex space-x-3 font-medium">
             <input
               type="checkbox"
