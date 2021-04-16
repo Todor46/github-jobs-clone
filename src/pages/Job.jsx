@@ -40,11 +40,13 @@ const Job = () => {
           <span className="text-xs">{formatJobDate(data.created_at)}</span>
         </div>
         <div className="flex mt-8 space-x-3 mb-8">
-          <img
-            src={data.company_logo}
-            alt={data.company}
-            className="w-11 h-11"
-          />
+          <div className="w-11 h-11 flex items-center justify-center">
+            <img
+              src={data.company_logo}
+              alt={data.company}
+              className="max-w-full max-h-full"
+            />
+          </div>
           <div>
             <div className="font-bold text-lg">{data.company}</div>
             <div className="text-gray-light flex items-center text-xs">
