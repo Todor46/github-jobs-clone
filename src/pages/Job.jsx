@@ -11,7 +11,7 @@ const Job = () => {
 
   useEffect(() => {
     setData(getJobsById(id));
-  }, []);
+  }, [id]);
 
   return (
     <div className="md:grid grid-cols-12 gap-8 text-gray-dark">
