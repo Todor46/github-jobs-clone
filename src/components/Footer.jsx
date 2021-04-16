@@ -7,7 +7,7 @@ const Footer = () => {
       <a
         className="font-bold underline text-gray-light"
         target="blank"
-        href="https://github.com/Todor46"
+        href="https://github.com/Todor46/github-jobs-clone"
       >
         Todor Konjevic
       </a>{" "}
