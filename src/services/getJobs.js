@@ -1,5 +1,4 @@
-export default function getJobs () { 
-  return [
+const jobs = [
   {
       "id": "6e8d541b-baa3-4eb4-8bd3-87b372b5ef35",
       "type": "Full Time",
@@ -650,4 +649,12 @@ export default function getJobs () {
       "how_to_apply": "<p><a href=\"https://t.gohiring.com/h/d5d08568316cda6795cb208adfb543ede5099e0d746afbf429ad8200bda0e154\">application form</a></p>\n",
       "company_logo": "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBaFdnIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ffc576e3add1b4951c47b2b69cfc2de0658dad29/Chemovator.png"
   }
-]}
+];
+
+export default function getJobs() {
+    return jobs;
+}
+
+export function getJobsById(id) {
+    return jobs.find(job => job.id === id)
+}

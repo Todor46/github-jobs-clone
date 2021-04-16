@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import "./App.css";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
+import Job from "./pages/Job";
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
       <Header />
       <Router>
         <Switch>
-          <Route to="/" exact>
+          <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="/job/:id">
+            <Job />
           </Route>
         </Switch>
       </Router>
