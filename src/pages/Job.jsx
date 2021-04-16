@@ -26,7 +26,7 @@ const Job = () => {
         <div className="text-gray-light font-bold uppercase text-poppins">
           How to apply
         </div>
-        <div className="mt-4 text-poppins font-medium">
+        <div className="mt-4 text-poppins font-medium break-words">
           {ReactHtmlParser(data?.how_to_apply)}
         </div>
       </div>
