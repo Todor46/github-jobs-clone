@@ -16,6 +16,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
+    // Here we mock the fetching time
     setTimeout(() => {
       setJobs(getJobs());
       setLoading(false);
@@ -158,7 +159,7 @@ const Home = () => {
             <div className="w-full h-full flex items-center justify-center">
               <Loader />
             </div>
-          ) : (
+          ) : slicedJobs.length ? (
             <>
               {slicedJobs.map((job) => (
                 <JobCard key={job.id} job={job} />
@@ -169,6 +170,16 @@ const Home = () => {
                 handleFiltering={handleFiltering}
               />
             </>
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center">
+              <div className="text-2xl font-bold">Nothing found</div>
+              <div
+                className="text-brand text-sm font-medium hover:underline cursor-pointer"
+                onClick={() => history.push({ search: "" })}
+              >
+                Reset filters
+              </div>
+            </div>
           )}
         </div>
       </div>
