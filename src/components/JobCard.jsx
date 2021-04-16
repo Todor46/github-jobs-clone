@@ -1,5 +1,6 @@
 import React from "react";
 import formatJobDate from "../utils/formatJobDate";
+import Badge from "./Badge";
 
 const JobCard = ({ job }) => {
   const {
@@ -34,9 +35,7 @@ const JobCard = ({ job }) => {
           </a>
         </div>
         <div className="md:flex space-y-6 md:space-y-0 justify-between">
-          <div className="border border-gray-dark rounded-4 py-1 px-2 text-xs font-bold w-min whitespace-nowrap flex-none">
-            {type}
-          </div>
+          <Badge text={type} />
           <div className="flex text-gray-light space-x-7 text-xs">
             <div className="flex items-center">
               <span className="material-icons text-lg mr-1 leading-3">
