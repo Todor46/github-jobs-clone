@@ -24,12 +24,14 @@ const JobCard = ({ job }) => {
       </div>
       <div className="flex flex-col flex-grow">
         <div className="text-xs font-bold mb-2">
-          <a href={company_url} target="blank">
+          <a href={company_url} target="blank" className="text-gray-dark">
             {company}
           </a>
         </div>
         <div className="text-lg leading-5 mb-3">
-          <a href={`/${id}`}>{title}</a>
+          <a href={`/job/${id}`} className="text-gray-dark">
+            {title}
+          </a>
         </div>
         <div className="md:flex space-y-6 md:space-y-0 justify-between">
           <div className="border border-gray-dark rounded-4 py-1 px-2 text-xs font-bold w-min whitespace-nowrap flex-none">
