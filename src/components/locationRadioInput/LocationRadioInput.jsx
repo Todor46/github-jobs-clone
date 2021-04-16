@@ -10,7 +10,7 @@ const LocationRadioInput = ({ groupName, value, label, onChange, checked }) => {
         <input
           type="radio"
           name={groupName}
-          value={value}
+          value={value || ""}
           id={value}
           className="hidden"
           onChange={onChange}
